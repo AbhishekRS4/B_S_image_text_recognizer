@@ -10,3 +10,8 @@
 ```
 streamlit run src/bs_image_text_recognizer_app.py
 ```
+
+### Screenshots
+* ![Screenshot 1](images/image_1.PNG)
+* ![Screenshot 2](images/image_2.PNG)
+* ![Screenshot 3](images/image_3.PNG)
