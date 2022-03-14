@@ -1,6 +1,8 @@
 import json
+import skimage
 import requests
 import streamlit as st
+from skimage import draw, io
 import http.client, urllib.request, urllib.parse, urllib.error, base64
 
 def write_json_file(json_file_name, data_dict):
@@ -86,8 +88,20 @@ def search_text_multi_images():
     if show_images:
         if num_images_key_found > 0:
             for url_image in all_images_key_found:
+                image = io.imread(url_image.strip())
+                word_index = data_dict_json[url_image]["word"].index(search_key_word)
+                bounding_box = data_dict_json[url_image]["bounding_box"][word_index].split(",")
+                bounding_box = [int(value) for value in bounding_box]
+
+                try:
+                    row, col = draw.rectangle_perimeter(start=(bounding_box[1], bounding_box[0]),
+                                                        end=(bounding_box[1]+bounding_box[3], bounding_box[0]+bounding_box[2]))
+                    image[row, col, :] = [255, 255, 0]
+                except:
+                    st.warning("Some issue with bouding box, so could not be processed")
+
                 st.header(url_image)
-                st.image(url_image)
+                st.image(image)
     return
 
 def save_detected_words():
