@@ -13,6 +13,9 @@ streamlit run src/bs_image_text_recognizer_app.py
 
 ### Screenshots
 * The following screenshots show a few sample images with bounding box drawn on the image highlighting the search keyword which was found in that image
+***
 ![Screenshot 1](images/image_1.PNG)
+***
 ![Screenshot 2](images/image_2.PNG)
+***
 ![Screenshot 3](images/image_3.PNG)
